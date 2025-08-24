@@ -65,10 +65,10 @@ public final class UpgradeFusionListener implements Listener {
             main.setType(Material.DIAMOND_PICKAXE);
         }
 
-        if (meta.hasEnchant(Enchantment.DIG_SPEED)) {
-            meta.removeEnchant(Enchantment.DIG_SPEED);
+        if (meta.hasEnchant(Enchantment.EFFICIENCY)) {
+            meta.removeEnchant(Enchantment.EFFICIENCY);
         }
-        meta.addEnchant(Enchantment.DIG_SPEED, type.efficiencyLevel(), true);
+        meta.addEnchant(Enchantment.EFFICIENCY, type.efficiencyLevel(), true);
 
         List<net.kyori.adventure.text.Component> lore = meta.lore();
         if (lore == null) lore = new ArrayList<>();

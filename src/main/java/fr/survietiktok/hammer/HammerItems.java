@@ -32,7 +32,7 @@ public final class HammerItems {
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text("Casse 3x3 au sol").color(NamedTextColor.GRAY));
         meta.lore(lore);
-        meta.addEnchant(Enchantment.DURABILITY, 2, true);
+        meta.addEnchant(Enchantment.UNBREAKING, 2, true);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.getPersistentDataContainer().set(IS_HAMMER_KEY, PersistentDataType.BYTE, (byte)1);
         it.setItemMeta(meta);

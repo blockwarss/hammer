@@ -44,7 +44,7 @@ public final class HammerListener implements Listener {
         // on retire le bloc central (déjà géré par l'évènement actuel)
         toBreak.remove(center);
 
-        int unbreaking = tool.getEnchantmentLevel(Enchantment.DURABILITY);
+        int unbreaking = tool.getEnchantmentLevel(Enchantment.UNBREAKING);
         int extraBroken = 0;
 
         PluginManager pm = plugin.getServer().getPluginManager();

@@ -40,7 +40,7 @@ public final class UpgradeItems {
         lore.add(Component.text("Rareté: " + type.display()).color(NamedTextColor.YELLOW));
         meta.lore(lore);
 
-        meta.addEnchant(Enchantment.LUCK, 1, true);
+        meta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         PersistentDataContainer pdc = meta.getPersistentDataContainer();

@@ -1,9 +1,9 @@
 name: HammerUpgrades
-version: 1.0.4
+version: 1.0.2
 main: fr.survietiktok.hammeraddon.HammerUpgradesPlugin
 api-version: '1.21'
 author: Now-Heberg
-depend: [Hammer]
+softdepend: [Hammer]
 load: POSTWORLD
 
 commands:

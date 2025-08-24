@@ -29,12 +29,16 @@ public final class UpgradeItems {
         ItemStack it = new ItemStack(Material.PRISMARINE_CRYSTALS);
         ItemMeta meta = it.getItemMeta();
 
-        meta.setDisplayName(ChatColor.AQUA + "Hammer Upgrade " + type.display());
+        // Nom: "Hammer Upgrade " + &color&l<Rarete>
+        meta.setDisplayName(ChatColor.AQUA + "Hammer Upgrade " + type.styled());
 
         List<String> lore = new ArrayList<>();
-        lore.add(ChatColor.GRAY + "Fusion: main = Hammer, offhand = Upgrade");
-        lore.add(ChatColor.DARK_GRAY + "Sneak + clic droit pour fusionner");
-        lore.add(ChatColor.YELLOW + "Rareté: " + type.display());
+        lore.add(" "); // ligne vide pour l'espace demandé
+        lore.add(ChatColor.GRAY + "Tenez le " + ChatColor.WHITE + "Hammer" + ChatColor.GRAY + " dans la main principale.");
+        lore.add(ChatColor.GRAY + "Placez l'" + ChatColor.WHITE + "Upgrade" + ChatColor.GRAY + " dans la main secondaire.");
+        lore.add(ChatColor.GRAY + "Accroupissez-vous puis " + ChatColor.WHITE + "clic droit" + ChatColor.GRAY + " pour fusionner.");
+        lore.add(ChatColor.DARK_GRAY + "(Non cumulable : une seule fusion possible)");
+        lore.add(ChatColor.GOLD + "Rareté : " + type.styled());
         meta.setLore(lore);
 
         meta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);

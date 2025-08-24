@@ -7,31 +7,31 @@ import java.lang.reflect.Method;
 
 public final class HammerHandle {
 
-    private Plugin hammerPlugin;
+    private final Plugin hammerPlugin;
     private Method isHammerMethod;
 
-    public boolean tryAttach(Plugin plugin) {
-        if (plugin == null) return false;
+    public HammerHandle(Plugin hammerPlugin) {
+        this.hammerPlugin = hammerPlugin;
         try {
-            for (Method m : plugin.getClass().getDeclaredMethods()) {
-                if (!m.getName().equals("isHammer")) continue;
-                if (m.getParameterCount() != 1) continue;
-                if (!ItemStack.class.isAssignableFrom(m.getParameterTypes()[0])) continue;
-                m.setAccessible(true);
-                this.hammerPlugin = plugin;
-                this.isHammerMethod = m;
-                return true;
+            Class<?> main = hammerPlugin.getClass();
+            for (Method m : main.getDeclaredMethods()) {
+                if (m.getName().equals("isHammer")
+                        && m.getParameterCount() == 1
+                        && ItemStack.class.isAssignableFrom(m.getParameterTypes()[0])) {
+                    m.setAccessible(true);
+                    this.isHammerMethod = m;
+                    break;
+                }
             }
-        } catch (Throwable ignored) {}
-        return false;
+        } catch (Throwable t) { }
     }
 
     public boolean isReady() {
-        return this.hammerPlugin != null && this.isHammerMethod != null;
+        return this.isHammerMethod != null;
     }
 
     public boolean isHammer(ItemStack stack) {
-        if (!isReady()) return false;
+        if (isHammerMethod == null) return false;
         try {
             Object res = isHammerMethod.invoke(hammerPlugin, stack);
             return (res instanceof Boolean) ? (Boolean) res : false;

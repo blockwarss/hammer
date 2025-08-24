@@ -59,9 +59,10 @@ public final class HammerUpgradeCommand implements CommandExecutor, TabCompleter
 
         target.getInventory().addItem(upgrades.create(type));
         sender.sendMessage(ChatColor.GREEN + "Upgrade envoyé à " + ChatColor.AQUA + target.getName()
-                + ChatColor.GOLD + " : " + type.display());
+                + ChatColor.GOLD + " : " + type.styled());
+
         if (sender != target) {
-            target.sendMessage(ChatColor.GREEN + "Tu as reçu un Hammer Upgrade " + ChatColor.GOLD + type.display());
+            target.sendMessage(ChatColor.GREEN + "Tu as reçu un Hammer Upgrade " + ChatColor.GOLD + type.styled());
         }
         return true;
     }

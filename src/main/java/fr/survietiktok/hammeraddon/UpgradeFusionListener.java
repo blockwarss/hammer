@@ -61,19 +61,10 @@ public final class UpgradeFusionListener implements Listener {
         UpgradeType type = upgrades.which(off);
         if (type == null) return;
 
-        Material original = main.getType();
-        boolean converted = false;
         if (type.convertToDiamond()) {
             main.setType(Material.DIAMOND_PICKAXE);
-            // Si le Hammer d'origine ne reconnaît plus l'outil (donc 3x3 perdu), on annule la conversion.
-            if (!handle.isHammer(main)) {
-                main.setType(original);
-            } else {
-                converted = true;
-            }
         }
 
-        // Conserve tout le reste. Ne touche qu'à Efficiency.
         if (meta.hasEnchant(Enchantment.EFFICIENCY)) {
             meta.removeEnchant(Enchantment.EFFICIENCY);
         }
@@ -81,8 +72,8 @@ public final class UpgradeFusionListener implements Listener {
 
         List<String> lore = meta.getLore();
         if (lore == null) lore = new ArrayList<>();
-        lore.add(ChatColor.GOLD + "Rareté: " + type.display());
-        if (converted) lore.add(ChatColor.DARK_AQUA + "(Converti en diamant)");
+        lore.add(" ");
+        lore.add(ChatColor.GOLD + "Rareté : " + type.styled());
         meta.setLore(lore);
 
         pdc.set(UPGRADE_APPLIED_KEY, PersistentDataType.BYTE, (byte)1);
@@ -94,8 +85,7 @@ public final class UpgradeFusionListener implements Listener {
         if (amt <= 1) p.getInventory().setItemInOffHand(null);
         else off.setAmount(amt - 1);
 
-        p.sendMessage(ChatColor.GREEN + "Fusion réussie: " + ChatColor.AQUA + "Hammer Upgrade " + type.display()
-                + (converted ? ChatColor.DARK_AQUA + " (Diamant OK)" : ChatColor.YELLOW + " (Diamant ignoré pour garder le 3x3)"));
+        p.sendMessage(ChatColor.GREEN + "Fusion réussie: " + ChatColor.AQUA + "Hammer Upgrade " + type.styled());
         e.setCancelled(true);
     }
 }

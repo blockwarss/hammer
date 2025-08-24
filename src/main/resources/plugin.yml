@@ -1,0 +1,17 @@
+name: HammerUpgrades
+version: 1.0.1
+main: fr.survietiktok.hammeraddon.HammerUpgradesPlugin
+api-version: '1.21'
+author: Now-Heberg
+depend: [Hammer]
+
+commands:
+  hammerupgrade:
+    description: Donne un objet "Hammer Upgrade" (Basic/Rare/Epic)
+    usage: /hammerupgrade <basic|rare|epic> [joueur]
+    permission: hammer.upgrade.give
+
+permissions:
+  hammer.upgrade.give:
+    description: Autorise l'envoi d'objets Hammer Upgrade
+    default: op
